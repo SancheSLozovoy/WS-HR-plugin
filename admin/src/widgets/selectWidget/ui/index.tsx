@@ -6,51 +6,35 @@ import { AppDispatch, RootState } from 'src/app/store/store';
 
 const Select = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { specialties, loading, error, selectedSpecialty } = useSelector((state: RootState) => state.select);
+  const { specialties, selectedSpecialty } = useSelector((state: RootState) => state.select);
 
   useEffect(() => {
-    const loadData = async () => {
-        await dispatch(loadSpecialties());
-        console.log('Специальности загружены:', specialties);
-    };
-    loadData();
-}, [dispatch]);
-
+    dispatch(loadSpecialties());
+  }, [dispatch]);
 
   const handleSelectionChange = (value: string) => {
     dispatch(setSelectedSpecialty(value));
   };
-
-  const handleButtonClick = () => {
-    console.log('Сгенерировать ссылку для:', selectedSpecialty);
-  };
-
-  if (loading) {
-    return <div>Загрузка...</div>;
-  }
-
-  if (error) {
-    return <div>Ошибка: {error}</div>;
-  }
 
   return (
     <Main style={{ width: "50%" }} className='main'>
       <SingleSelect
         value={selectedSpecialty || ''}
         onChange={handleSelectionChange}
+        placeholder="Выберите специальность"
       >
         {specialties.map((specialty) => (
-          <SingleSelectOption key={specialty.speciality} value={specialty.speciality}>
-            {specialty.speciality}
+          <SingleSelectOption key={specialty.id} value={specialty.name}> 
+            {specialty.name} 
           </SingleSelectOption>
         ))}
-
       </SingleSelect>
-      <Button style={{ marginTop: 10, fontSize: 43 }} onClick={handleButtonClick}>
+      <Button style={{ marginTop: 10, fontSize: 43 }}>
         Сгенерировать ссылку на задание
       </Button>
     </Main>
   );
+  
 };
 
 export { Select };
