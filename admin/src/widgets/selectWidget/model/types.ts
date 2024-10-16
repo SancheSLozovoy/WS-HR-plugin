@@ -1,6 +1,7 @@
 export interface Speciality {
-    id: number
+    id: number;
     name: string;
+    task: string;
   }
   
   export interface SelectState {
