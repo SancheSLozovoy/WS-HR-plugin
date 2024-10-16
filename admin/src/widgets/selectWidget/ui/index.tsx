@@ -24,8 +24,8 @@ const Select = () => {
         placeholder="Выберите специальность"
       >
         {specialties.map((specialty) => (
-          <SingleSelectOption key={specialty.id} value={specialty.name}> 
-            {specialty.name} 
+          <SingleSelectOption key={specialty.id} value={specialty.name}>
+            {specialty.name}
           </SingleSelectOption>
         ))}
       </SingleSelect>
@@ -34,7 +34,7 @@ const Select = () => {
       </Button>
     </Main>
   );
-  
+
 };
 
 export { Select };
