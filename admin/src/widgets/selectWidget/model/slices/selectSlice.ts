@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchSpecialties } from '../api/selectApi';
-import { initialState, Speciality } from './types';
+import { fetchSpecialties } from '../../api/selectApi';
+import { initialState, Speciality } from '../types/types';
 
 export const loadSpecialties = createAsyncThunk<Speciality[]>(
   'select/loadSpecialties',

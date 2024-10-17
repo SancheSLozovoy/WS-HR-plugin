@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import selectReducer from '../../widgets/selectWidget/model/selectSlice';
+import selectReducer from '../../widgets/selectWidget/model/slices/selectSlice';
 
 const store = configureStore({
   reducer: {

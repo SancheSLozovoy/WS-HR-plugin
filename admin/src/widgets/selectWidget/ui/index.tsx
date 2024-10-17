@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Main, Button, SingleSelect, SingleSelectOption } from '@strapi/design-system';
-import { loadSpecialties, setSelectedSpecialty } from '../model/selectSlice';
+import { loadSpecialties, setSelectedSpecialty } from '../model/slices/selectSlice';
 import { AppDispatch, RootState } from 'src/app/store/store';
 
 const Select = () => {
