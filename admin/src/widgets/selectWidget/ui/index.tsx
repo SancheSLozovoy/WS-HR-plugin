@@ -8,8 +8,8 @@ import { getRandomTask } from '../../../features/getLink/model/slices/taskSlice'
 const Select = () => {
   const dispatch: AppDispatch = useDispatch();
   const { specialties, selectedSpecialty } = useSelector((state: RootState) => state.select);
-  const { task, uuid, isValid, documentId } = useSelector((state: RootState) => state.taskLink);
-  console.log('UUID from Redux:', uuid);
+  const { uuid, isValid, documentId } = useSelector((state: RootState) => state.taskLink);
+
   useEffect(() => {
     dispatch(loadSpecialties());
   }, [dispatch]);
@@ -26,30 +26,40 @@ const Select = () => {
 
   return (
     <Main style={{ width: "50%" }} className='main'>
-      <SingleSelect
-        value={selectedSpecialty || ''}
-        onChange={handleSelectionChange}
-        placeholder="Выберите специальность"
-      >
-        {specialties.map((specialty) => (
-          <SingleSelectOption key={specialty.id} value={specialty.id}>
-            {specialty.name}
-          </SingleSelectOption>
-        ))}
-      </SingleSelect>
-      <Button style={{ marginTop: 10, fontSize: 43 }} onClick={handleGenerateLink}>
-        Сгенерировать ссылку на задание
-      </Button>
+      <h1 style={{ fontSize: 32 }}>Выбор задания</h1>
+      {specialties.length !== 0 ? (
+        <>
+          <h4 style={{ fontSize: 18, fontWeight: 300, marginBottom: 10}}>Специальность</h4>
+          <SingleSelect
+            value={selectedSpecialty || ''}
+            onChange={handleSelectionChange}
+            placeholder="Выберите специальность"
+          >
+            {specialties.map((specialty) => (
+              <SingleSelectOption key={specialty.id} value={specialty.id}>
+                {specialty.name}
+              </SingleSelectOption>
+            ))}
+          </SingleSelect>
+          <Button style={{ marginTop: 10, fontSize: 43 }} onClick={handleGenerateLink}>
+            Сгенерировать ссылку на задание
+          </Button>
 
-      {isValid && uuid && (
-        <div style={{ fontSize: 24, marginTop: 20 }}>
-          <p>Ссылка на задание: <a href={`http://localhost:3000/${documentId}`}>{`http://localhost:3000/${documentId}`}</a></p>
-        </div>
-      )}
+          {isValid && uuid && (
+            <div style={{ fontSize: 18, marginTop: 20, fontWeight: 300 }}>
+              <p>Ссылка на задание: <a href={`http://localhost:3000/${documentId}`}>{`http://localhost:3000/${documentId}`}</a></p>
+            </div>
+          )}
 
-      {!isValid && (
-        <div style={{ fontSize: 24, marginTop: 20 }}>
-          <p>Нет доступной задачи или задача не загружена.</p>
+          {!isValid && (
+            <div style={{ fontSize: 18, marginTop: 20, fontWeight: 300 }}>
+              <p>Нет доступной задачи или задача не загружена.</p>
+            </div>
+          )}
+        </>
+      ) : (
+        <div style={{ fontSize: 18, marginTop: 20, fontWeight: 300 }}>
+          Для выбора задания необходимо добавить хотя бы одну активную специальность и хотя бы одно активное задание для неё.
         </div>
       )}
     </Main>
