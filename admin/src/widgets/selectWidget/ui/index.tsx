@@ -42,13 +42,13 @@ const Select = () => {
       </Button>
 
       {isValid && uuid && (
-        <div style={{fontSize: 24, marginTop: 20 }}>
+        <div style={{ fontSize: 24, marginTop: 20 }}>
           <p>Ссылка на задание: <a href={`http://localhost:3000/${documentId}`}>{`http://localhost:3000/${documentId}`}</a></p>
         </div>
       )}
 
       {!isValid && (
-        <div style={{fontSize: 24, marginTop: 20 }}>
+        <div style={{ fontSize: 24, marginTop: 20 }}>
           <p>Нет доступной задачи или задача не загружена.</p>
         </div>
       )}

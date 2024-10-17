@@ -12,12 +12,29 @@ export const getRandomTask = createAsyncThunk<{ task: Task; links: TaskLink[] },
             throw new Error('Задач нет');
         }
 
-        const randomTask = tasks[Math.floor(Math.random() * tasks.length)];
-        console.log(randomTask)
-        const links = await fetchValidTaskLinks(randomTask.id);
-        console.log(randomTask.id)
-        console.log(links)
-        return { task: randomTask, links }; 
+        let validTask = null;
+        let validLinks = [];
+
+        while (validTask === null) {
+            const randomIndex = Math.floor(Math.random() * tasks.length);
+            const randomTask = tasks[randomIndex];
+
+            if (randomTask.isActive) {
+                const links = await fetchValidTaskLinks(randomTask.id);
+                console.log(randomTask.id);
+                console.log(links);
+                if (links.length > 0) {
+                    validTask = randomTask;
+                    validLinks = links;
+                }
+            }
+        }
+
+        if (!validTask) {
+            throw new Error('Нет доступной задачи или задача не загружена');
+        }
+
+        return { task: validTask, links: validLinks };
     }
 );
 
