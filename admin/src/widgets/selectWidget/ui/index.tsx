@@ -8,8 +8,8 @@ import { getRandomTask } from '../../../features/getLink/model/slices/taskSlice'
 const Select = () => {
   const dispatch: AppDispatch = useDispatch();
   const { specialties, selectedSpecialty } = useSelector((state: RootState) => state.select);
-  const { task, uuid, isValid } = useSelector((state: RootState) => state.taskLink);
-
+  const { task, uuid, isValid, documentId } = useSelector((state: RootState) => state.taskLink);
+  console.log('UUID from Redux:', uuid);
   useEffect(() => {
     dispatch(loadSpecialties());
   }, [dispatch]);
@@ -43,7 +43,7 @@ const Select = () => {
 
       {isValid && uuid && (
         <div style={{fontSize: 24, marginTop: 20 }}>
-          <p>Ссылка на задание: <a href={`http://localhost:3000/task/${uuid}`}>{`http://localhost:3000/task/${uuid}`}</a></p>
+          <p>Ссылка на задание: <a href={`http://localhost:3000/${documentId}`}>{`http://localhost:3000/${documentId}`}</a></p>
         </div>
       )}
 

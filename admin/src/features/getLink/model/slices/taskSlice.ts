@@ -30,12 +30,15 @@ const taskSlice = createSlice({
             .addCase(getRandomTask.fulfilled, (state, action) => {
                 const taskLinks = action.payload.links || [];
                 const uuid = taskLinks.length > 0 ? taskLinks[0].uuid : '';
+                const documentId = taskLinks.length > 0 ? taskLinks[0].documentId : '';
 
+                state.documentId = documentId;
                 state.uuid = uuid;
                 state.task = action.payload.task;
                 state.isValid = taskLinks.length > 0; 
             })
             .addCase(getRandomTask.rejected, (state) => {
+                state.documentId = '';
                 state.uuid = '';
                 state.task = null;
                 state.isValid = false;
