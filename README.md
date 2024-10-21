@@ -12,8 +12,8 @@
 
 1. **Склонируйте серверную часть Strapi**:
 ```bash
-    git clone https://github.com/SancheSLozovoy/WS-HR-admin.git
-    cd path/WS-HR-admin
+git clone https://github.com/SancheSLozovoy/WS-HR-admin.git
+cd path/WS-HR-admin
 ```
 
 2. **Создайте файл `.env` для конфигурации**:
@@ -21,55 +21,56 @@
 Создайте файл `.env` в корне проекта и добавьте настройки подключения:
 
 ```javascript
-    HOST=0.0.0.0
-    PORT=1337
-    APP_KEYS="toBeModified1,toBeModified2"
-    API_TOKEN_SALT=tobemodified
-    ADMIN_JWT_SECRET=tobemodified
-    TRANSFER_TOKEN_SALT=tobemodified
-    JWT_SECRET=tobemodified
+HOST=0.0.0.0
+PORT=1337
+APP_KEYS="toBeModified1,toBeModified2"
+API_TOKEN_SALT=tobemodified
+ADMIN_JWT_SECRET=tobemodified
+TRANSFER_TOKEN_SALT=tobemodified
+JWT_SECRET=tobemodified
 ```
-
-3. **Запустите Strapi**:
+3. **Установите зависимости**
 ```bash
-    npm run develop --watch-admin
+npm i
 ```
 
-Strapi будет доступен по адресу `http://localhost:1337`.
 
 ## Шаг 2: Установка плагина
 1. **Склонируйте репозиторий проекта**:
 
 ```bash
-    git clone https://github.com/SancheSLozovoy/WS-HR-plugin.git
-    cd path/WS-HR-plugin
+git clone https://github.com/SancheSLozovoy/WS-HR-plugin.git
+cd path/WS-HR-plugin
 ```
 
 2. **Установите зависимости**:
 ```bash
-   npm install
+npm install
 ```
 
 3. **Связать плагин с Strapi с помощью yalc**:
    - Сначала установите `yalc`, если он не установлен:
 ```bash
-   npm install -g yalc
+npm install -g yalc
 ```
 
-   - В директории вашего плагина выполните команду:
+   - В директории вашего плагина выполните команды:
 ```bash
-   yalc publish
+npm run build
+npm i
+yalc publish
 ```
 
    - Затем вернитесь в директорию Strapi и выполните команду для установки плагина:
 ```bash
-   cd path/WS-HR-admin
-   yalc add ws-hr
+cd path/WS-HR-admin
+yalc add ws-hr
+npm install
  ```
 
-4. **Перезапустите Strapi**:
+4. **Запустите Strapi**:
 ```bash
-   npm run develop --watch-admin
+npm run develop --watch-admin
 ```
 
 ## Шаг 3: Настройка и использование
@@ -77,5 +78,8 @@ Strapi будет доступен по адресу `http://localhost:1337`.
 1. **Создайте нового администратора**:
    Перейдите в браузер по адресу `http://localhost:1337/admin` и авторизуйтесь
 
-2. **Использование плагина**:
-    Перейдите на страницу плагина в панеле навигации. Выполните указанные действия 
+2. **Настройка плагина**:
+   Перейдите в меню настроек. В разделе USERS & PERMISSIONS PLUGIN выберете Roles/Public. В разделе Permissions укажите все разрешения для Specialt, Task, Task-link.
+
+3. **Добавление контента**
+   Перейдите в меню Content Manager. В каждую из сущностей добавьте хотя бы одну запись.
