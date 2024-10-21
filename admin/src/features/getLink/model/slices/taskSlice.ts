@@ -19,6 +19,10 @@ export const getRandomTask = createAsyncThunk<{ task: Task; links: TaskLink[] },
             const randomIndex = Math.floor(Math.random() * tasks.length);
             const randomTask = tasks[randomIndex];
 
+            if (randomTask.length === 0 || !randomTask.isActive) {
+                break;
+            }
+            console.log(randomTask)
             if (randomTask.isActive) {
                 const links = await fetchValidTaskLinks(randomTask.id);
                 console.log(randomTask.id);
@@ -26,6 +30,8 @@ export const getRandomTask = createAsyncThunk<{ task: Task; links: TaskLink[] },
                 if (links.length > 0) {
                     validTask = randomTask;
                     validLinks = links;
+                }else{
+                    break;
                 }
             }
         }
@@ -52,7 +58,7 @@ const taskSlice = createSlice({
                 state.documentId = documentId;
                 state.uuid = uuid;
                 state.task = action.payload.task;
-                state.isValid = taskLinks.length > 0; 
+                state.isValid = taskLinks.length > 0;
             })
             .addCase(getRandomTask.rejected, (state) => {
                 state.documentId = '';
