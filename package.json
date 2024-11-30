@@ -31,26 +31,29 @@
     "test:ts:back": "run -T tsc -p server/tsconfig.json"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.3.0",
     "@strapi/design-system": "^2.0.0-rc.11",
     "@strapi/icons": "^2.0.0-rc.11",
-    "react-intl": "^6.8.0"
+    "axios": "^1.7.7",
+    "react-intl": "^6.8.0",
+    "react-redux": "^9.1.2"
   },
   "devDependencies": {
-    "@strapi/strapi": "^5.0.6",
     "@strapi/sdk-plugin": "^5.2.7",
+    "@strapi/strapi": "^5.0.6",
+    "@strapi/typescript-utils": "^5.0.6",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
     "styled-components": "^6.1.13",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.1",
-    "@strapi/typescript-utils": "^5.0.6",
     "typescript": "^5.6.3"
   },
   "peerDependencies": {
-    "@strapi/strapi": "^5.0.6",
     "@strapi/sdk-plugin": "^5.2.7",
+    "@strapi/strapi": "^5.0.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",

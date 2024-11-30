@@ -1,7 +1,7 @@
-import { getTranslation } from './utils/getTranslation';
-import { PLUGIN_ID } from './pluginId';
-import { Initializer } from './components/Initializer';
-import { PluginIcon } from './components/PluginIcon';
+import { getTranslation } from './shared/utils/getTranslation';
+import { PLUGIN_ID } from './shared/pluginId';
+import { Initializer } from './shared/components/Initializer';
+import { PluginIcon } from './shared/components/PluginIcon';
 
 export default {
   register(app: any) {
@@ -13,7 +13,7 @@ export default {
         defaultMessage: PLUGIN_ID,
       },
       Component: async () => {
-        const { App } = await import('./pages/App');
+        const { App } = await import('./app/App');
 
         return App;
       },
